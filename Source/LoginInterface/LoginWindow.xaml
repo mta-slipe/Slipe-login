@@ -1,0 +1,20 @@
+﻿<Window x:Class="LoginInterface.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoginInterface"
+        mc:Ignorable="d"
+        Title="Login" Height="200" Width="383">
+    <Grid>
+        <TextBlock x:Name="usernameLabel" HorizontalAlignment="Left" Margin="14,56,0,0" Text="Username:" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="64"/>
+        <TextBlock x:Name="passwordLabel" HorizontalAlignment="Left" Margin="14,90,0,0" Text="Password:" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="60"/>
+        <TextBox x:Name="usernameBox" HorizontalAlignment="Left" Margin="105,56,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Height="18"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="105,90,0,0" Password="" VerticalAlignment="Top" Width="255" Height="18"/>
+        <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" Margin="245,147,0,0" VerticalAlignment="Top" Width="115" Height="20" Click="LoginClicked"/>
+        <Button x:Name="registerButton" Content="Register" HorizontalAlignment="Left" Margin="105,147,0,0" VerticalAlignment="Top" Width="115" Height="20" Click="RegisterClicked"/>
+        <TextBlock x:Name="welcomeLabel" HorizontalAlignment="Left" Margin="14,31,0,0" Text="Welcome to Slipe Login Sample!" TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="357"/>
+        <TextBlock x:Name="errorLabel" HorizontalAlignment="Left" Margin="105,119,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="255"/>
+
+    </Grid>
+</Window>
