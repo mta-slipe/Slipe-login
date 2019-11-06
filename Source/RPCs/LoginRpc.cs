@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RPCs
 {
-    public class LoginRpc : IRpc
+    public class LoginRpc : BaseRpc
     {
         public string Username { get; set; }
         public string Password { get; set; }
@@ -21,7 +21,7 @@ namespace RPCs
             this.Password = password;
         }
 
-        public void Parse(dynamic value)
+        public override void Parse(dynamic value)
         {
             this.Username = (string)value.Username;
             this.Password = (string)value.Password;

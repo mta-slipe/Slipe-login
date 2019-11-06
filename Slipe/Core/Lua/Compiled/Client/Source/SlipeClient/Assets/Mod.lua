@@ -30,7 +30,9 @@ System.namespace("Slipe.Client.Assets", function (namespace)
     -- <param name="dffFilepath"></param>
     -- <param name="colFilepath"></param>
     __ctor2__ = function (this, txdFilepath, dffFilepath, colFilepath)
-      this.txd = SlipeClientAssets.Txd(txdFilepath)
+      if txdFilepath ~= nil then
+        this.txd = SlipeClientAssets.Txd(txdFilepath)
+      end
       if dffFilepath ~= nil then
         this.dff = SlipeClientAssets.Dff(dffFilepath)
       end
@@ -55,8 +57,10 @@ System.namespace("Slipe.Client.Assets", function (namespace)
       this.state = 1 --[[DownloadState.Downloading]]
       this.modelsToApply:Add(model)
 
-      this.txd.OnDownloadComplete = this.txd.OnDownloadComplete + System.fn(this, OnFileDownload)
-      this.txd:Download()
+      if this.txd ~= nil then
+        this.txd.OnDownloadComplete = this.txd.OnDownloadComplete + System.fn(this, OnFileDownload)
+        this.txd:Download()
+      end
 
       if this.dff ~= nil then
         this.dff.OnDownloadComplete = this.dff.OnDownloadComplete + System.fn(this, OnFileDownload)
@@ -69,7 +73,7 @@ System.namespace("Slipe.Client.Assets", function (namespace)
       end
     end
     OnFileDownload = function (this)
-      if this.txd:getState() ~= 2 --[[DownloadState.Downloaded]] or this.dff ~= nil and this.dff:getState() ~= 2 --[[DownloadState.Downloaded]] or this.col ~= nil and this.col:getState() ~= 2 --[[DownloadState.Downloaded]] then
+      if this.txd ~= nil and this.txd:getState() ~= 2 --[[DownloadState.Downloaded]] or this.dff ~= nil and this.dff:getState() ~= 2 --[[DownloadState.Downloaded]] or this.col ~= nil and this.col:getState() ~= 2 --[[DownloadState.Downloaded]] then
         return
       end
       this.state = 2 --[[DownloadState.Downloaded]]
@@ -82,8 +86,10 @@ System.namespace("Slipe.Client.Assets", function (namespace)
         end
         return
       end
-      this.txd:Load(true)
-      this.txd:ApplyTo(model)
+      if this.txd ~= nil then
+        this.txd:Load(true)
+        this.txd:ApplyTo(model)
+      end
       if this.dff ~= nil then
         this.dff:Load()
         this.dff:ApplyTo(model, false)

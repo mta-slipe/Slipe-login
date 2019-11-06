@@ -10,7 +10,16 @@ System.import(function (out)
 end)
 System.namespace("Slipe.Shared.Rpc", function (namespace)
   namespace.class("BaseRpc", function (namespace)
-    local GetArray, CreateElementArray, GetElementArray, GetElement
+    local getOnClientRpcFailed, setOnClientRpcFailed, GetArray, CreateElementArray, GetElementArray, GetElement, __ctor__
+    __ctor__ = function (this)
+      this.rpcFailedAction = 0 --[[ClientRpcFailedAction.Ignore]]
+    end
+    getOnClientRpcFailed = function (this)
+      return this.rpcFailedAction
+    end
+    setOnClientRpcFailed = function (this, value)
+      this.rpcFailedAction = value
+    end
     GetArray = function (this, table, T)
       return SlipeMtaDefinitions.MtaShared.GetArrayFromTable(table, "", T)
     end
@@ -41,13 +50,24 @@ System.namespace("Slipe.Shared.Rpc", function (namespace)
           out.Slipe.Shared.Rpc.IRpc
         }
       end,
+      rpcFailedAction = 0,
+      getOnClientRpcFailed = getOnClientRpcFailed,
+      setOnClientRpcFailed = setOnClientRpcFailed,
       GetArray = GetArray,
       CreateElementArray = CreateElementArray,
       GetElementArray = GetElementArray,
       GetElement = GetElement,
+      __ctor__ = __ctor__,
       __metadata__ = function (out)
         return {
+          fields = {
+            { "rpcFailedAction", 0x1, System.Int32 }
+          },
+          properties = {
+            { "OnClientRpcFailed", 0x106, System.Int32, getOnClientRpcFailed, setOnClientRpcFailed }
+          },
           methods = {
+            { ".ctor", 0x6, nil },
             { "CreateElementArray", 0x183, CreateElementArray, System.Array(out.Slipe.Shared.Elements.Element), System.Array(out.Slipe.MtaDefinitions.MtaElement) },
             { "GetArray", 0x10183, GetArray, function (T) return System.Object, System.Array(T) end },
             { "GetElement", 0x10183, GetElement, function (T) return System.Object, T end },

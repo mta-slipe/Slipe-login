@@ -1,11 +1,12 @@
 ﻿using Slipe.Shared.Rpc;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace RPCs
 {
-    public class ErrorRpc: IRpc
+    public class ErrorRpc: BaseRpc
     {
         public string Error { get; set; }
 
@@ -19,7 +20,7 @@ namespace RPCs
             this.Error = error;
         }
 
-        public void Parse(dynamic value)
+        public override void Parse(dynamic value)
         {
             this.Error = (string)value.Error;
         }
